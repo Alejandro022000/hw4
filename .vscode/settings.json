@@ -33,6 +33,9 @@
     "string_view": "cpp",
     "span": "cpp",
     "random": "cpp",
-    "iosfwd": "cpp"
+    "iosfwd": "cpp",
+    "sstream": "cpp",
+    "regex": "cpp",
+    "fstream": "cpp"
   }
 }

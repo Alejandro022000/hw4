@@ -5,103 +5,55 @@ class BST {
     string data;
     BST *left, *right;
  
-public:
-    // Default constructor.
-    BST();
- 
-    // Parameterized constructor.
-    BST(string);
- 
-    // Insert function.
-    BST* Insert(BST*, string);
- 
-    // Inorder traversal.
-    void Inorder(BST*,ofstream &);
-
-    void Preorder(BST*,ofstream &);
-
-    void Postorder(BST*,ofstream &);
+public:    
+    BST();// Default constructor     
+    BST(string);// Parameterized constructor    
+    BST* Insert(BST*, string);// Insert function
+    void Inorder(BST*,ofstream &);// Inorder traversal
+    void Preorder(BST*,ofstream &);// Preorder traversal
+    void Postorder(BST*,ofstream &);// Postorder traversal
 };
  
-// Default Constructor definition.
-BST ::BST()
-    : data("")
-    , left(NULL)
-    , right(NULL)
-{
-}
- 
-// Parameterized Constructor definition.
-BST ::BST(string value)
-{
-    data = value;
-    left = right = NULL;
-}
- 
-// Insert function definition.
-BST* BST ::Insert(BST* root, string value)
-{
-    if (!root) {
+BST ::BST(): data(""), left(nullptr), right(nullptr){} 
+BST ::BST(string value){data = value;left = right = NULL;}
+
+BST* BST ::Insert(BST* root, string value){
+    if (!root) 
         return new BST(value);
-    }
- 
-    // Insert data.
-    if (value.size() > (root->data).size()) {
-        // Insert right node data, if the 'value'
-        // to be inserted is greater than 'root' node data.
- 
-        // Process right nodes.
-        root->right = Insert(root->right, value);
-    }
-    else if (value.size() < (root->data).size()){
-        // Insert left node data, if the 'value'
-        // to be inserted is smaller than 'root' node data.
- 
-        // Process left nodes.
-        root->left = Insert(root->left, value);
-    }
- 
-    // Return 'root' node, after insertion.
+    if (value.size() > (root->data).size())      
+        root->right = Insert(root->right, value);//insert right node depending on str lenghts
+    else if (value.size() < (root->data).size())
+        root->left = Insert(root->left, value);//insert right node depending on str lenghts
     return root;
 }
  
-// Inorder traversal function.
-// This gives data in sorted order.
-void BST ::Inorder(BST* root, ofstream &out)
-{
-    if (!root) {
+void BST ::Inorder(BST* root, ofstream &out){
+    if (!root)
         return;
-    }
-    Inorder(root->left, out);
+    Inorder(root->left, out);//go to the left of the tree
+    //print the node
     cout << root->data << endl;
     out << root->data << endl;
-    Inorder(root->right, out);
+    Inorder(root->right, out);//go to the right of the tree
 }
 void BST ::Preorder(BST* root, ofstream &out){
-    if (!root){
+    if (!root)
         return;
-    }
-    /* first print data of node */
+    //print the node
     cout << root->data <<endl;
-    out << root->data <<endl;
- 
-    /* then recur on left subtree */
-    Preorder(root->left, out);
- 
-    /* now recur on right subtree */
-    Preorder(root->right, out);
+    out << root->data <<endl; 
+    
+    Preorder(root->left, out);//go to the left of the tree     
+    Preorder(root->right, out);//go to the right of the tree
 }
 void BST ::Postorder(BST* root, ofstream &out)
 {
     if (!root)
         return;
-    // first recur on left subtree
-    Postorder(root->left, out);
+    Postorder(root->left, out);//go to the left of the tree
+    Postorder(root->right, out);//go to the right of the tree
  
-    // then recur on right subtree
-    Postorder(root->right, out);
- 
-    // now deal with the node
+    //print the node
     cout << root->data << endl;
     out << root->data <<endl;
 }

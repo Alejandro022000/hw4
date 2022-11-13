@@ -24,7 +24,6 @@ bool my_queue::empty() { return top==nullptr; }
 
 string my_queue::get_top_val() {return top->word;}
 
-
 void my_queue::dequeue() {
   if (top == nullptr) {
     return;
