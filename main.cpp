@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
       order = 2;
       continue;
     }
-    else if (inStr == "InoPostorderrder"){
+    else if (inStr == "Postorder"){
       order = 3;
       continue;
     }
