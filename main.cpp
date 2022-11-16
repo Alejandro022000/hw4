@@ -8,17 +8,18 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
+  
   ArgumentManager am(argc, argv);
   ifstream input(am.get("input"));
   ofstream out(am.get("output"));
   /*
-    ifstream input("input3.txt");
+    ifstream input("input5.txt");
     ofstream out("output1.txt");
-  */
+*/
   string inStr; // input string
   my_queue pqueue; // priority queue to save commands
   queue<string> encoded_message; //regular queue to save words to decode
-  BST b, *root = NULL; //BST
+  BST my_bst, *root = NULL; //BST
   int order; //to decide the order of the output (pre, post, or inorder)
 
   //first get all the commands in the priority queue
@@ -32,7 +33,7 @@ int main(int argc, char *argv[]) {
       order = 2;
       continue;
     }
-    else if (inStr == "InoPostorderrder"){
+    else if (inStr == "Postorder"){
       order = 3;
       continue;
     }
@@ -152,27 +153,27 @@ int main(int argc, char *argv[]) {
         encoded_message.push(word);//push back to the queue
       }
     }
-
-    else if(temp_str=="BST"){            
-      root = b.Insert(root, encoded_message.front());//insert to the bst
+    else if(temp_str=="BST"){ 
+      if(!encoded_message.empty()){        
+      root = my_bst.Insert(root, encoded_message.front());//insert to the bst
       encoded_message.pop();//get rid of it, bye bye nena
-    }    
+    }    }
     pqueue.dequeue();//we are done with this command, bring the next one!!!! 
   }
 
-  //let's figure out how we are going to output this tree
+  //now, let's figure out how we are going to output this tree
   switch (order){//told you order will be imprtant ;)
   case 1:  
     cout<<"Printing INORDER"<<endl;
-    b.Inorder(root,out);
+    my_bst.Inorder(root,out);
     break;
   case 2:
     cout<<"Printing PREORDER"<<endl;
-    b.Preorder(root,out);
+    my_bst.Preorder(root,out);
     break;
   case 3:  
     cout<<"Printing POSTORDER"<<endl;
-    b.Postorder(root,out);
+    my_bst.Postorder(root,out);
     break;  
   default:
     break;

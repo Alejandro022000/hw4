@@ -10,7 +10,7 @@ if [ ! -f ${cmd} ]; then
     exit
 fi
 
-for casenum in `seq 1 1 3`; do
+for casenum in `seq 1 1 9`; do
     if [ -f ${casenum}.stderr ]; then
         rm ${casenum}.stderr
     fi
@@ -19,7 +19,7 @@ for casenum in `seq 1 1 3`; do
     fi
 done
 
-for casenum in `seq 1 1 3`; do
+for casenum in `seq 1 1 9`; do
 	./${cmd} "input=input${casenum}.txt;output=output${casenum}.txt" 1>${casenum}.stdcout 2>${casenum}.stderr
 	diff -iEBwu ans${casenum}.txt output${casenum}.txt > ${casenum}.diff
 	if [ $? -ne 0 ]; then

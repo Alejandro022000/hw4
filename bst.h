@@ -17,9 +17,13 @@ public:
 BST ::BST(): data(""), left(nullptr), right(nullptr){} 
 BST ::BST(string value){data = value;left = right = NULL;}
 
+
+
 BST* BST ::Insert(BST* root, string value){
     if (!root) 
         return new BST(value);
+    if (value.size() == (root->data).size())      
+        root = Insert(root->right, value);//insert right node depending on str lenghts  
     if (value.size() > (root->data).size())      
         root->right = Insert(root->right, value);//insert right node depending on str lenghts
     else if (value.size() < (root->data).size())
