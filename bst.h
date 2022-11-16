@@ -13,7 +13,7 @@ public:
     void Preorder(BST*,ofstream &);// Preorder traversal
     void Postorder(BST*,ofstream &);// Postorder traversal
 };
- 
+ //.
 BST ::BST(): data(""), left(nullptr), right(nullptr){} 
 BST ::BST(string value){data = value;left = right = NULL;}
 
