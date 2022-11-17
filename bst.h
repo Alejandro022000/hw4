@@ -23,7 +23,7 @@ BST* BST ::Insert(BST* root, string value){
     if (!root) 
         return new BST(value);
     if (value.size() == (root->data).size())      
-        root = Insert(root->right, value);//insert right node depending on str lenghts  
+        root = Insert(root->right, value);//replace node if string sizes are equal  
     if (value.size() > (root->data).size())      
         root->right = Insert(root->right, value);//insert right node depending on str lenghts
     else if (value.size() < (root->data).size())
